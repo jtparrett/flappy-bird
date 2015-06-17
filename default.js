@@ -136,7 +136,7 @@ FLAP.game = function(){
 
   function paintLoop(){
     if(!opts.gameState){
-      console.log('Game over, you scored: ' + opts.score);
+      alert('Game over, you scored: ' + opts.score);
       return false;
     }
 
