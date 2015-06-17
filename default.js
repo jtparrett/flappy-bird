@@ -61,8 +61,8 @@ FLAP.game = function(){
         time: startTime,
         width: 52,
         gap: 100,
-        speed: 130,
-        interval: 1800,
+        speed: 150,
+        interval: 1600,
         images: ['pipe-top.png', 'pipe-bottom.png'],
         insts: []
       };
