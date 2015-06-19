@@ -22,9 +22,11 @@
 
 <canvas id="canvas"></canvas>
 
+<script src="https://cdn.firebase.com/js/client/2.2.7/firebase.js"></script>
 <script src="default.js"></script>
 <script>
 var FLAP = window.FLAP || {};
+FLAP.firebaseRef = new Firebase("https://fiery-fire-5800.firebaseio.com/");
 FLAP.game.start();
 </script>
 

@@ -135,11 +135,6 @@ FLAP.game = function(){
   }
 
   function paintLoop(){
-    if(!opts.gameState){
-      alert('Game over, you scored: ' + opts.score);
-      return false;
-    }
-
     var now = new Date().getTime();
     opts.delta = (now - opts.paintTime) / 1000;
 
@@ -157,7 +152,28 @@ FLAP.game = function(){
     }
 
     opts.paintTime = now;
-    window.requestAnimationFrame(paintLoop);
+    if(opts.gameState){
+      window.requestAnimationFrame(paintLoop);
+    } else {
+      shareScore();
+    }
+  }
+
+  function shareScore(){
+    var username = prompt('Game over, you scored: ' + opts.score + '. Type your name to share your score');
+    if(username != ''){
+      // FLAP.firebaseRef.on('value', function(data){
+      //   var dataVal = data.val();
+      //   var scores = dataVal.scores;
+      
+      //   scores.push({
+      //     username: username,
+      //     score: opts.score
+      //   });
+
+      //   FLAP.firebaseRef.set(dataVal);
+      // });
+    }
   }
 
   function start(){
