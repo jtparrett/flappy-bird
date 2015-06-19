@@ -10,18 +10,27 @@ FLAP.game = function(){
         height: 568,
         paintTime: startTime,
         delta: 0,
-        gravity: 900,
+        gravity: 800,
         gameState: true,
         score: 0
       };
+  var pipe = {
+        time: startTime,
+        width: 52,
+        gap: 100,
+        speed: 130,
+        interval: 1800,
+        images: ['pipe-top.png', 'pipe-bottom.png'],
+        insts: []
+      };
   var bird = {
         aniTime: startTime,
-        flapTime: startTime,
         width: 34,
         height: 24,
         speed: 600,
-        jumpSpeed: 300,
         curSpeed: 0,
+        jumpDefault: 280,
+        jumpSpeed: 0,
         x: 80,
         y: (opts.height / 2) - 12,
         images: ['bird-up.png', 'bird-middle.png', 'bird-down.png'],
@@ -49,23 +58,15 @@ FLAP.game = function(){
           }
         },
         flap: function(now){
+          bird.jumpSpeed -= opts.gravity * opts.delta;
           bird.y -= bird.jumpSpeed * opts.delta;
           bird.flapping = true;
 
-          if(now >= bird.flapTime + 110){
+          if(bird.jumpSpeed <= 0){
             bird.flapping = false;
             bird.curSpeed = 0;
           }
         }
-      };
-  var pipe = {
-        time: startTime,
-        width: 52,
-        gap: 100,
-        speed: 130,
-        interval: 1800,
-        images: ['pipe-top.png', 'pipe-bottom.png'],
-        insts: []
       };
 
   function createPipe(){
@@ -187,13 +188,7 @@ FLAP.game = function(){
 
     canvas.onmousedown = function(){
       var now = new Date().getTime();
-      bird.flapTime = now;
-      bird.flap(now);
-    };
-
-    canvas.ontouchend = function(){
-      var now = new Date().getTime();
-      bird.flapTime = now;
+      bird.jumpSpeed = bird.jumpDefault;
       bird.flap(now);
     };
   }

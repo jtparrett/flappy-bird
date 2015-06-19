@@ -5,9 +5,11 @@ function bh(el){
   return $('[data-behaviour=' + el + ']');
 }
 
-FLAP.firebaseRef.on('value', function(data){
-  FLAP.firebaseData = data.val();
-  FLAP.scoreBoard.init();
+$(function(){
+  FLAP.firebaseRef.on('value', function(data){
+    FLAP.firebaseData = data.val();
+    FLAP.scoreBoard.init();
+  });
+  
+  FLAP.game.start();
 });
-
-FLAP.game.start();
