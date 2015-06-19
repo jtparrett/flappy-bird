@@ -14,6 +14,12 @@
     display: block;
     background: #ccc;
     margin: 0 auto;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
   }
 
   .wrapper {
@@ -27,7 +33,7 @@
 
 <div class="wrapper">
   <canvas id="canvas"></canvas>
-  <p>Top 5 scores</p>
+  <p>Top scores</p>
   <ul class="score-board" data-behaviour="score-board"></ul>
 </div>
 

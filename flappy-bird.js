@@ -37,6 +37,7 @@ FLAP.game = function(){
             (bird.curImage < bird.images.length - 1)? bird.curImage++ : bird.curImage = 0;
             bird.aniTime = now;
           }
+
           draw(bird.images[bird.curImage], bird.width, bird.height, bird.x, bird.y, 0, 0); 
         },
         update: function(now){
@@ -51,7 +52,7 @@ FLAP.game = function(){
           bird.y -= bird.jumpSpeed * opts.delta;
           bird.flapping = true;
 
-          if(now >= bird.flapTime + 100){
+          if(now >= bird.flapTime + 110){
             bird.flapping = false;
             bird.curSpeed = 0;
           }
@@ -61,8 +62,8 @@ FLAP.game = function(){
         time: startTime,
         width: 52,
         gap: 100,
-        speed: 150,
-        interval: 1600,
+        speed: 130,
+        interval: 1800,
         images: ['pipe-top.png', 'pipe-bottom.png'],
         insts: []
       };
@@ -152,11 +153,13 @@ FLAP.game = function(){
     }
 
     opts.paintTime = now;
-    if(opts.gameState){
-      window.requestAnimationFrame(paintLoop);
-    } else {
+
+    if(!opts.gameState){
       shareScore();
+      return false;  
     }
+    
+    window.requestAnimationFrame(paintLoop);
   }
 
   function shareScore(){
