@@ -26,7 +26,7 @@
 <script src="default.js"></script>
 <script>
 var FLAP = window.FLAP || {};
-FLAP.firebaseRef = new Firebase("https://fiery-fire-5800.firebaseio.com/");
+FLAP.firebaseRef = new Firebase("https://flappy-bird.firebaseio.com/");
 FLAP.game.start();
 </script>
 
