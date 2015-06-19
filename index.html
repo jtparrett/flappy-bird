@@ -15,20 +15,28 @@
     background: #ccc;
     margin: 0 auto;
   }
+
+  .wrapper {
+    width: 320px;
+    margin: 0 auto;
+  }
   </style>
 
 </head>
 <body>
 
-<canvas id="canvas"></canvas>
+<div class="wrapper">
+  <canvas id="canvas"></canvas>
+  <p>Top 5 scores</p>
+  <ul class="score-board" data-behaviour="score-board"></ul>
+</div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://cdn.firebase.com/js/client/2.2.7/firebase.js"></script>
-<script src="default.js"></script>
-<script>
-var FLAP = window.FLAP || {};
-FLAP.firebaseRef = new Firebase("https://flappy-bird.firebaseio.com/");
-FLAP.game.start();
-</script>
+<script src="score-board.js"></script>
+<script src="flappy-bird.js"></script>
+<script src="application.js"></script>
+
 
 </body>
 </html>

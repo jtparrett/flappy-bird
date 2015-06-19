@@ -160,20 +160,22 @@ FLAP.game = function(){
   }
 
   function shareScore(){
-    var username = prompt('Game over, you scored: ' + opts.score + '. Type your name to share your score');
-    if(username != ''){
-      // FLAP.firebaseRef.on('value', function(data){
-      //   var dataVal = data.val();
-      //   var scores = dataVal.scores;
-      
-      //   scores.push({
-      //     username: username,
-      //     score: opts.score
-      //   });
-
-      //   FLAP.firebaseRef.set(dataVal);
-      // });
+    if(opts.score <= 0){
+      return false;
     }
+
+    FLAP.firebaseRef.authWithOAuthPopup('github', function(error, user){
+      if(error){
+        return false;
+      }
+
+      FLAP.firebaseData.scores.push({
+        username: user.github.username,
+        score: opts.score
+      });
+
+      FLAP.firebaseRef.set(FLAP.firebaseData);
+    });
   }
 
   function start(){
